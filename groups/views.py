@@ -26,11 +26,12 @@ class ListLinks(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ListLinks, self).get_context_data(**kwargs)
         context['form'] = LinkForm()
+        context['group'] = self.group
         return context
 
     def get_queryset(self):
-        group = get_object_or_404(Group, pk=self.kwargs['group_id'])
-        return Link.objects.filter(group=group)
+        self.group = get_object_or_404(Group, pk=self.kwargs['group_id'])
+        return Link.objects.filter(group=self.group)
 
 
 class GroupCreate(generic.View):
@@ -39,7 +40,7 @@ class GroupCreate(generic.View):
         form = GroupForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('group:list_groups')
+        return redirect('groups:list_groups')
 
 
 class LinkCreate(generic.View):
@@ -50,6 +51,6 @@ class LinkCreate(generic.View):
             link = form.save(commit=False)
             link.group = Group.objects.get(pk=self.kwargs['group_id'])
             link.save()
-        url = reverse('group:list_links', kwargs={'group_id':self.kwargs['group_id']})
+        url = reverse('groups:list_links', kwargs={'group_id':self.kwargs['group_id']})
         return redirect(url)
 

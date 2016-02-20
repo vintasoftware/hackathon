@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>Links List</h1>
+{% block content %}
+<section class="links-list">
+  <div class="container">
+    <div class="row">
+	    <div class="col-md-12">
+	      <h1>Feed</h1>
+        {% for item in object_list %}
+        <ul class="list-group">
+          <li class="list-group-item"><a href="{{ item.url }}">{{ item.url }}</a></li>
+        </ul>
+        {% endfor %}
+	    </div>
+    </div>
+    <div class="row">
+        <h1>Create Links</h1>
+    <form action="{% url 'groups:create_link' group_id=group.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create" />
+    </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
 
-    {% for link in object_list %}
-        <p><a href="{{ link.url }}">{{ link.url }}</a></p>
-    {% endfor %}
-
-
-    <h1>Create Links</h1>
-    <form action="/groups/2/links/create/" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create" />
-</body>
-</html>

@@ -22,5 +22,5 @@ from groups.views import Home
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Home.as_view(), name='home'),
-    url(r'^', include('groups.urls', namespace='group'))
+    url(r'^', include('groups.urls', namespace='groups'))
 ]
