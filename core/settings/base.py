@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Third party apps:
     'rest_framework',
     'authtools',
+    'braces',
 
     # Your apps:
     'groups',

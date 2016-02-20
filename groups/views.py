@@ -5,6 +5,8 @@ from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
 from django.conf import settings
 
+from braces.views import LoginRequiredMixin
+
 from .forms import GroupForm, LinkForm
 from .models import Group, Link
 
@@ -13,17 +15,20 @@ class Home(generic.TemplateView):
     template_name = 'landing_page.html'
 
 
-class ListGroups(generic.ListView):
+class ListGroups(LoginRequiredMixin, generic.ListView):
     model = Group
     template_name = 'groups_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(ListGroups, self).get_context_data(**kwargs)
-        context['form'] = GroupForm()
+        context['form'] = GroupForm(self.request.user)
         return context
 
+    def get_queryset(self):
+        return self.request.user.group_set.all()
 
-class ListLinks(generic.ListView):
+
+class ListLinks(LoginRequiredMixin, generic.ListView):
     template_name = 'links_list.html'
 
     def get_context_data(self, **kwargs):
@@ -37,16 +42,18 @@ class ListLinks(generic.ListView):
         return Link.objects.filter(group=self.group)
 
 
-class GroupCreate(generic.View):
+class GroupCreate(LoginRequiredMixin, generic.View):
+    raise_exception = True
 
     def post(self, request, *args, **kwargs):
-        form = GroupForm(request.POST)
+        form = GroupForm(request.user, request.POST)
         if form.is_valid():
             form.save()
         return redirect('groups:list_groups')
 
 
-class LinkCreate(generic.View):
+class LinkCreate(LoginRequiredMixin, generic.View):
+    raise_exception = True
 
     def post(self, request, *args, **kwargs):
         form = LinkForm(request.POST)

@@ -30,3 +30,4 @@ traitlets==4.1.0
 whitenoise==2.0.6
 django-authtools==1.4.0
 readability-api==1.0.2
+django-braces==1.8.1
