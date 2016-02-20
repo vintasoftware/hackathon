@@ -8,7 +8,7 @@
 	      <h1>Feed</h1>
         {% for item in object_list %}
         <ul class="list-group">
-          <li class="list-group-item"><a href="{{ item.url }}">{{ item.url }}</a></li>
+          <li class="list-group-item"> <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a> <a href="{{ item.url }}">{{ item.url }}</a></li>
         </ul>
         {% endfor %}
 	    </div>
