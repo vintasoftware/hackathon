@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <h1>Links List</h1>
+
+    {% for link in object_list %}
+        <p><a href="{{ link.url }}">{{ link.url }}</a></p>
+    {% endfor %}
+
+</body>
+</html>

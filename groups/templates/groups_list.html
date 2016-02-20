@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <h1>Groups List</h1>
+
+    {% for group in object_list %}
+        <p>{{ group.name }}</p>
+    {% endfor %}
+
+</body>
+</html>
