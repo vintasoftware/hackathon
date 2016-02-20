@@ -1,6 +1,9 @@
+from readability import ParserClient
+
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
+from django.conf import settings
 
 from .forms import GroupForm, LinkForm
 from .models import Group, Link
@@ -50,7 +53,17 @@ class LinkCreate(generic.View):
         if form.is_valid():
             link = form.save(commit=False)
             link.group = Group.objects.get(pk=self.kwargs['group_id'])
+            # extract data from readability
+            parser_client = ParserClient(token=settings.READABILITY_TOKEN)
+            parser_response = parser_client.get_article(link.url)
+            article = parser_response.json()
+            link.title = article.get('title', '')
+            link.content = article.get('content', '')
             link.save()
         url = reverse('groups:list_links', kwargs={'group_id':self.kwargs['group_id']})
         return redirect(url)
 
+
+class LinkDetail(generic.DetailView):
+
+    model = Link
