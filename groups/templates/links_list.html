@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>Links List</h1>
-
-    {% for link in object_list %}
-        <p><a href="{{ link.url }}">{{ link.url }}</a></p>
-    {% endfor %}
-
-</body>
-</html>
+{% block content %}
+<section class="links-list">
+  <div class="container">
+    <div class="row">
+	    <div class="col-md-12">
+	      <h1>Feed</h1>
+        {% for item in object_list %}
+        <ul class="list-group">
+          <li class="list-group-item"><a href="{{ item.url }}">{{ item.url }}</a></li>
+        </ul>
+        {% endfor %}
+	    </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
