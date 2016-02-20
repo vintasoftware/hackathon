@@ -38,9 +38,11 @@ INSTALLED_APPS = [
 
     # Third party apps:
     'rest_framework',
+    'authtools',
 
     # Your apps:
     'groups',
+    'users',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -121,3 +123,5 @@ REST_FRAMEWORK = {
         'groups.filter_backends.LimitFilterBackend',
     )
 }
+
+AUTH_USER_MODEL = 'users.User'
