@@ -21,4 +21,4 @@ class UserCreateView(generic.CreateView):
     template_name = 'users/create.html'
 
     def get_success_url(self):
-        return reverse('users:create')
+        return reverse('groups:list_groups')
