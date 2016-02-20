@@ -1,5 +1,8 @@
+from django.core.urlresolvers import reverse
 from django.views import generic
+from django.shortcuts import redirect, get_object_or_404
 
+from .forms import GroupForm, LinkForm
 from .models import Group, Link
 
 
@@ -11,13 +14,42 @@ class ListGroups(generic.ListView):
     model = Group
     template_name = 'groups_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ListGroups, self).get_context_data(**kwargs)
+        context['form'] = GroupForm()
+        return context
+
 
 class ListLinks(generic.ListView):
     template_name = 'links_list.html'
 
-    def get_queryset(self):
-        return Link.objects.filter(group_id=self.kwargs['group_id'])
+    def get_context_data(self, **kwargs):
+        context = super(ListLinks, self).get_context_data(**kwargs)
+        context['form'] = LinkForm()
+        return context
 
-home = Home.as_view()
-list_groups = ListGroups.as_view()
-list_links = ListLinks.as_view()
+    def get_queryset(self):
+        group = get_object_or_404(Group, pk=self.kwargs['group_id'])
+        return Link.objects.filter(group=group)
+
+
+class GroupCreate(generic.View):
+
+    def post(self, request, *args, **kwargs):
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('group:list_groups')
+
+
+class LinkCreate(generic.View):
+
+    def post(self, request, *args, **kwargs):
+        form = LinkForm(request.POST)
+        if form.is_valid():
+            link = form.save(commit=False)
+            link.group = Group.objects.get(pk=self.kwargs['group_id'])
+            link.save()
+        url = reverse('group:list_links', kwargs={'group_id':self.kwargs['group_id']})
+        return redirect(url)
+

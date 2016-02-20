@@ -12,5 +12,13 @@
         <p>{{ group.name }}</p>
     {% endfor %}
 
+
+    <h1>Create Groups</h1>
+    <form action="/groups/create/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+
 </body>
 </html>

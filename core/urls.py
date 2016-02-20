@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from groups.views import Home
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', 'groups.views.home', name='home'),
+    url(r'^$', Home.as_view(), name='home'),
     url(r'^', include('groups.urls', namespace='group'))
 ]
