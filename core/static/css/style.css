@@ -1,0 +1,30 @@
+.home h1 {
+  font-size: 60px; }
+.home h2 {
+  margin: 10px auto 30px; }
+.home .header {
+  text-align: center; }
+
+.groups .item {
+  min-height: 200px;
+  background-color: #ccc;
+  position: relative; }
+  .groups .item p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%); }
+.groups .right-row {
+  margin: 20px 0; }
+
+.modal-body {
+  margin: 20px; }
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+button {
+  text-transform: uppercase; }
+
+/*# sourceMappingURL=style.css.map */
