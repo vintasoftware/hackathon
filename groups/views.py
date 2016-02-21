@@ -4,10 +4,12 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
 from django.conf import settings
+from django.db.models import Q
+from django.http import JsonResponse
 
 from braces.views import LoginRequiredMixin
 
-from .forms import GroupForm, LinkForm, AddUserGroupForm
+from .forms import GroupForm, LinkForm, AddUserGroupForm, FilterLinkForm
 from .models import Group, Link
 from .concepts import extract_tags
 
@@ -35,13 +37,19 @@ class ListLinks(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ListLinks, self).get_context_data(**kwargs)
         context['form'] = LinkForm()
+        context['filter_link_Form'] = FilterLinkForm()
         context['group'] = self.group
         context['add_user_form'] = AddUserGroupForm(self.request, self.group)
         return context
 
     def get_queryset(self):
         self.group = get_object_or_404(Group, pk=self.kwargs['group_id'])
-        return Link.objects.filter(group=self.group)
+        queryset = Link.objects.filter(group=self.group)
+        form = FilterLinkForm(self.request.GET)
+        if form.is_valid():
+            text = form.cleaned_data['content']
+            queryset = queryset.filter(Q(title__contains=text) | Q(content__contains=text))
+        return queryset
 
 
 class GroupCreate(LoginRequiredMixin, generic.View):
@@ -72,13 +80,22 @@ class LinkCreate(LoginRequiredMixin, generic.View):
             
             tags = extract_tags(link.title + ' ' + link.content)
             link.tags.add(*tags)
-        url = reverse('groups:list_links', kwargs={'group_id':self.kwargs['group_id']})
+        url = reverse('groups:list_links', kwargs={'group_id': self.kwargs['group_id']})
         return redirect(url)
 
 
 class LinkDetail(generic.DetailView):
 
     model = Link
+
+
+class LinkLike(LoginRequiredMixin, generic.View):
+
+    def post(self, request, *args, **kwargs):
+        link = get_object_or_404(Link, pk=kwargs.get('pk'))
+        link.votes += 1
+        link.save()
+        return JsonResponse({'id': link.pk, 'votes': link.votes})
 
 
 class AddUserGroupView(LoginRequiredMixin, generic.View):

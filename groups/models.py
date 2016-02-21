@@ -17,6 +17,7 @@ class Link(models.Model):
     url = models.URLField()
     title = models.CharField(max_length=750, null=True, blank=True)
     content = models.TextField(null=True, blank=True)
+    votes = models.IntegerField(null=True, blank=True, default=0)
     group = models.ForeignKey(Group)
 
     tags = TaggableManager()
