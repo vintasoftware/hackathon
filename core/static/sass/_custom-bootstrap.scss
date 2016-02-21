@@ -7,11 +7,16 @@ body.modal-open {
 
 //Modal
 .modal {
- overflow-y: auto;
+  overflow-y: auto;
 }
 
 .modal-open {
  overflow: auto;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0;
 }
 
 .modal-body {

@@ -3,16 +3,23 @@
 {% load staticfiles %}
 
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/inlineDisqussions.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/inlineDisqussions.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>{{ object.tittle }}</h1>
+  <section class="link-detail">
     <div class="container">
-        <div class="col-md-7">
+        <div class="card shadow col-md-7">
+          <div class="row">
+            <h1>{{ object.title }}</h1>
             {{ object.content|safe }}
-        </div>
+          </div>
+          <div class="row">
+            <div id="disqussions_wrapper" class="comments"></div>
+          </div>
+      </div>
     </div>
+  </section>
 {% endblock %}
 
 {% block scripts %}
@@ -31,7 +38,6 @@
           identifier: 'disqussion-narrow-p',
           position: 'left'
         });
-        jQuery('#disqussions_wrapper').addClass('container');
       });
     </script>
 {% endblock %}
