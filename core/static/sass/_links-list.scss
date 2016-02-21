@@ -7,6 +7,16 @@
     margin: 20px 0 0;
     border-bottom: 1px solid rgba(204, 204, 204, 0.19);
   }
+
+ .tags {
+    a, span {
+      padding: 2px 5px;
+      display: inline-block;
+      background-color: $green-color;
+      color: #fff;
+      font-size: 12px;
+    }
+  }
   
   h4 {
     margin-bottom: 20px;
@@ -16,27 +26,25 @@
     margin-bottom: 2em;
   }
 
-  .list-group {
-    margin-top: 2em;
+  .search-form {
+    margin: 2em auto;
+    text-align: center;
+
+    input {
+      width: 70%;
+    }
+  }
+
+  .list {
+    margin: 2em auto;
   }
   
-  .list-group-item {
+  .list-item {
     border-radius: 0;
-    border: 1px solid #EAE9D9;
-    margin: 10px 0;
-    padding: 5px 0;
+    border-bottom: 1px solid #EAE9D9;
+    padding: 10px 0;
 
     .item {
-      display: inline-block;
-      padding: 5px 10px;
-
-      .tag {
-        padding: 2px 5px;
-        display: inline-block;
-        background-color: $green-color;
-        color: #fff;
-        font-size: 12px;
-      }
 
       .votes {
         color: #555;
@@ -44,7 +52,7 @@
         text-align: center;
       }
 
-      .sub-text {
+      .votes-text {
         font-size: 12px;
         color: #7f8c8d;
         text-align: center;
@@ -57,6 +65,12 @@
             color: #4A4E4F;
           }
         }
+      }
+
+      .description {
+        font-size: 14px;
+        color: #7f8c8d;
+        padding-top: 10px;
       }
 
       p {
@@ -76,11 +90,14 @@
       .glyphicon {
         font-size: 22px;
         color: #ccc;
+
+        &.active {
+          color: $red-color;
+        }
       }
 
-      .glyphicon-heart:hover {
+      .glyphicon:hover {
         color: $red-color;
-        
         cursor: pointer;
       }
     }
