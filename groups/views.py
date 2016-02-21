@@ -9,6 +9,7 @@ from braces.views import LoginRequiredMixin
 
 from .forms import GroupForm, LinkForm, AddUserGroupForm
 from .models import Group, Link
+from .concepts import extract_tags
 
 
 class Home(generic.TemplateView):
@@ -68,6 +69,9 @@ class LinkCreate(LoginRequiredMixin, generic.View):
             link.title = article.get('title', '')
             link.content = article.get('content', '')
             link.save()
+            
+            tags = extract_tags(link.title + ' ' + link.content)
+            link.tags.add(*tags)
         url = reverse('groups:list_links', kwargs={'group_id':self.kwargs['group_id']})
         return redirect(url)
 

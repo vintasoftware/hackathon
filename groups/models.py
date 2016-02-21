@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from taggit.managers import TaggableManager
+
 
 
 class Group(models.Model):
@@ -16,6 +18,8 @@ class Link(models.Model):
     title = models.CharField(max_length=750, null=True, blank=True)
     content = models.TextField(null=True, blank=True)
     group = models.ForeignKey(Group)
+
+    tags = TaggableManager()
 
     def __str__(self):
         return self.url

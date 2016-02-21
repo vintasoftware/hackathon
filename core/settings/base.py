@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'authtools',
     'braces',
+    'taggit',
 
     # Your apps:
     'groups',
@@ -130,3 +131,5 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = reverse_lazy('groups:list_groups')
 LOGIN_URL = reverse_lazy('users:login')
+
+TAGGIT_CASE_INSENSITIVE = True

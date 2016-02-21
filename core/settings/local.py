@@ -30,11 +30,8 @@ EMAIL_FILE_PATH = base_dir_join('tmp_email')
 # DATABASE
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'bikes_dev',
-        'NAME': 'bikes_dev',
-        'PASSWORD': 'dev1',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite',
         'ATOMIC_REQUESTS': True,
     }
 }
