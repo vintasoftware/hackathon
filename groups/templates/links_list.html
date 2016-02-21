@@ -28,6 +28,18 @@
       <div class="col-md-12 brdcrumb">
         <p><a href="{% url 'groups:list_groups' %}">Back</a></p>
       </div>
+        <div class="">
+        <h1>Filter Links</h1>
+        <form id="add-group-form" action="{% url 'groups:list_links' group_id=group.pk %}" method="GET">
+          <div class="form-group">
+            <input type="text" class="form-control" name="content" id="id_content" placeHolder="insert..." required>
+          </div>
+          <span class="error help-block text-center"></span>
+          <div class="text-right">
+            <button type="submit" class="btn btn-default btn-main-reverse" aria-label="submit">Filter</button>
+          </div>
+        </form>
+      </div>
       <div class="col-md-6">
         <h1>Feed</h1>
         <h4>Subtitle</h4>

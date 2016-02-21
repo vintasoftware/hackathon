@@ -30,6 +30,10 @@ class LinkForm(forms.ModelForm):
         fields = ('url',)
 
 
+class FilterLinkForm(forms.Form):
+    content = forms.CharField(label='content', max_length=255, required=True)
+
+
 class AddUserGroupForm(forms.Form):
     email = forms.EmailField()
 
