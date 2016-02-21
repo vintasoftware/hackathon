@@ -49,6 +49,9 @@ class ListLinks(LoginRequiredMixin, generic.ListView):
         if form.is_valid():
             text = form.cleaned_data['content']
             queryset = queryset.filter(Q(title__contains=text) | Q(content__contains=text))
+        elif self.request.GET.get('tag'):
+            tag_name = self.request.GET.get('tag')
+            queryset = queryset.filter(tags__name=tag_name)
         return queryset
 
 

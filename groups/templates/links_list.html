@@ -74,20 +74,20 @@
       {% for item in object_list %}
         <li class="list-group-item">
           <span class="item">
-            <p class="votes">15</p>
+            <p class="votes">{{ item.votes }}</p>
             <p class="sub-text">votes</p>
           </span>
           <span class="item">
             <p><a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a></p>
             <p>
-              <a href=""><span class="tag">tag1</span></a>
-              <a href=""><span class="tag">tag1</span></a>
-              <a href=""><span class="tag">tag1</span></a>
+              {% for tag in item.tags.all|slice:":4" %}
+                <a href="{% url 'groups:list_links' group_id=group.pk %}?tag={{tag}}"><span class="tag">{{tag}}</span></a>
+              {% endfor %}
             </p>
             <!-- <a  class="sub-text" href="{{ item.url }}">{{ item.url }}</a> -->
           </span>
           <span class="item pull-right text-center actions">
-            <p><a href=""><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a></p>
+            <p><span class="glyphicon glyphicon-heart add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
             <p><a href=""><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></p>
           </span>
         </li>
@@ -115,7 +115,6 @@
 {% block scripts %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <script type="text/javascript">
-
     $(function() {
       $('.add_repo').click(function() {
         var csrftoken = $.cookie('csrftoken');
