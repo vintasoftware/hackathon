@@ -48,8 +48,17 @@
       <div class="col-md-12 brdcrumb">
         <p><a href="{% url 'groups:list_groups' %}">Back</a></p>
       </div>
-        <div class="">
-        <h1>Filter Links</h1>
+      <div class="col-md-6">
+        <h1>{{ group.name }}</h1>
+        <h4>Some cool text</h4>
+      </div>
+      <div class="col-md-6 right-row-mrg">
+        <div class="pull-right">
+          <button type="button" class="btn btn-main" data-toggle="modal" data-target="#add-user-modal">Invite Teammates</button>
+          <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button>
+        </div>
+      </div>
+      <div class="search-filter col-md-12">
         <form id="add-group-form" action="{% url 'groups:list_links' group_id=group.pk %}" method="GET">
           <div class="form-group">
             <input type="text" class="form-control" name="content" id="id_content" placeHolder="insert..." required>
@@ -60,39 +69,29 @@
           </div>
         </form>
       </div>
-      <div class="col-md-6">
-        <h1>{{ group.name }}</h1>
-        <h4>Some cool text</h4>
-      </div>
-      <div class="col-md-6 right-row-mrg">
-        <div class="pull-right">
-          <button type="button" class="btn btn-main" data-toggle="modal" data-target="#add-user-modal">Invite Teammates</button>
-          <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button>
-        </div>
-      </div>  
-      <ul class="list-group col-md-12">
+      <div class="list col-md-12">
       {% for item in object_list %}
-        <li class="list-group-item">
-          <span class="item">
-            <p class="votes" id="{{ item.pk }}">{{ item.votes }}</p>
-            <p class="sub-text">votes</p>
-          </span>
-          <span class="item">
+        <div class="list-item col-md-12" id="{{ item.pk }}">
+          <div class="item col-md-1">
+            <p class="votes">{{ item.votes }}</p>
+            <p class="votes-text">votes</p>
+          </div>
+          <div class="item col-md-10">
             <p><a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a></p>
-            <p>
-              <a href=""><span class="tag">tag1</span></a>
-              <a href=""><span class="tag">tag1</span></a>
-              <a href=""><span class="tag">tag1</span></a>
+            <p class="tags">
+              <a href="">tag1</a>
+              <a href="">tag1</a>
+              <a href="">tag1</a>
             </p>
-            <!-- <a  class="sub-text" href="{{ item.url }}">{{ item.url }}</a> -->
-          </span>
-          <span class="item pull-right text-center actions">
+            <p class="description">Resultado: Hoje temos jovens com habilidades incríveis que não sabem como utilizá-las. E estão ficando solitários, ansiosos e com a única sensação de emoção que lhes é fácil, as redes sociais.
+            </p>
+          </div>
+          <div class="item pull-right text-center actions col-md-1">
             <p><span class="glyphicon glyphicon-heart add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
-            <p><a href=""><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></p>
-          </span>
-        </li>
+          </div>
+        </div>
       {% endfor %}
-      </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -111,7 +110,9 @@
           type: "POST",
           headers: {"X-CSRFToken": csrftoken},
           success: function(data) {
-            $('#' + data.id).html(data.votes);
+            var item = '#' + data.id_content;
+            $(item + " .votes").html(data.votes);
+            $(item + " .glyphicon").addClass("active");
           }
         });
       });
