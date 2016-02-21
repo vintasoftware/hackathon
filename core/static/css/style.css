@@ -122,6 +122,10 @@
 .user h1 {
   margin-bottom: 20px; }
 
+body.modal-open {
+  overflow: inherit;
+  padding-right: 0 !important; }
+
 .modal {
   overflow-y: auto; }
 

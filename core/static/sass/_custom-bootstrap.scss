@@ -1,5 +1,10 @@
 //Custom Bootstrap
 
+body.modal-open {
+  overflow: inherit;
+  padding-right: 0 !important;
+}
+
 //Modal
 .modal {
  overflow-y: auto;
