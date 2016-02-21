@@ -25,9 +25,12 @@ class GroupForm(forms.ModelForm):
 
 
 class LinkForm(forms.ModelForm):
+    media_type = forms.ChoiceField(widget=forms.RadioSelect,
+                                   choices=Link.TYPES)
+
     class Meta:
         model = Link
-        fields = ('url',)
+        fields = ('url', 'media_type')
 
 
 class FilterLinkForm(forms.Form):

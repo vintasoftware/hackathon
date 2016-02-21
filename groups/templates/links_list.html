@@ -11,6 +11,9 @@
         <form id="add-group-form" action="{% url 'groups:create_link' group_id=group.pk %}" method="POST">
           <div class="form-group">
            {% csrf_token %}
+           <label for="id_media_type_0"><input id="id_media_type_0" name="media_type" type="radio" value="link"> link</label>
+           <label for="id_media_type_1"><input id="id_media_type_1" name="media_type" type="radio" value="article"> article</label>
+           <label for="id_media_type_2"><input id="id_media_type_2" name="media_type" type="radio" value="video"> video</label>
             <input type="url" class="form-control" name="url" id="id_url" placeHolder="Url" required>
           </div>
           <span class="error help-block text-center"></span>
@@ -71,7 +74,7 @@
           <input type="text" class="form-control input-lg" name="content" id="id_content" placeHolder="Search..." required>
           <button type="submit" class="btn btn-default btn-main-reverse btn-lg" aria-label="submit">Search</button>
         </form>
-      </div>  
+      </div>
       <div class="list-group col-md-12">
       {% for item in object_list %}
         <div class="list-item col-md-12" id="{{ item.pk }}">
@@ -80,7 +83,11 @@
             <p class="votes-text">votes</p>
           </div>
           <div class="item col-md-10">
+            {% if item.media_type == 'article' %}
             <p><a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a></p>
+            {% else %}
+            <p><a href="{{ item.url }}">{{item.url}}</a></p>
+            {% endif %}
             <p class="tags">
               {% for tag in item.tags.all|slice:":4" %}
                 <a href="{% url 'groups:list_links' group_id=group.pk %}?tag={{tag}}"><span class="tag">{{tag}}</span></a>

@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from model_utils import Choices
 from taggit.managers import TaggableManager
 
 
@@ -14,11 +15,14 @@ class Group(models.Model):
 
 
 class Link(models.Model):
+    TYPES = Choices('link', 'article', 'video')
     url = models.URLField()
     title = models.CharField(max_length=750, null=True, blank=True)
     content = models.TextField(null=True, blank=True)
     votes = models.IntegerField(null=True, blank=True, default=0)
     group = models.ForeignKey(Group)
+    media_type = models.CharField(choices=TYPES, max_length=255,
+                                  default=TYPES.link)
 
     tags = TaggableManager()
 

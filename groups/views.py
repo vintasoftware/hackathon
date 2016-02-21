@@ -7,7 +7,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.http import JsonResponse
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, UserPassesTestMixin
 
 from .forms import GroupForm, LinkForm, AddUserGroupForm, FilterLinkForm
 from .models import Group, Link
@@ -36,8 +36,13 @@ class ListGroups(LoginRequiredMixin, generic.ListView):
         return self.request.user.group_set.all()
 
 
-class ListLinks(LoginRequiredMixin, generic.ListView):
+class ListLinks(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     template_name = 'links_list.html'
+    raise_exception = True
+
+    def test_func(self, user):
+        group = get_object_or_404(Group, pk=self.kwargs['group_id'])
+        return group in user.group_set.all()
 
     def get_context_data(self, **kwargs):
         context = super(ListLinks, self).get_context_data(**kwargs)
@@ -79,14 +84,15 @@ class LinkCreate(LoginRequiredMixin, generic.View):
         if form.is_valid():
             link = form.save(commit=False)
             link.group = Group.objects.get(pk=self.kwargs['group_id'])
-            # extract data from readability
-            parser_client = ParserClient(token=settings.READABILITY_TOKEN)
-            parser_response = parser_client.get_article(link.url)
-            article = parser_response.json()
-            link.title = article.get('title', '')
-            link.content = article.get('content', '')
+            if link.media_type == Link.TYPES.article:
+                # extract data from readability
+                parser_client = ParserClient(token=settings.READABILITY_TOKEN)
+                parser_response = parser_client.get_article(link.url)
+                article = parser_response.json()
+                link.title = article.get('title', '')
+                link.content = article.get('content', '')
             link.save()
-            
+
             tags = extract_tags(link.title + ' ' + link.content)
             link.tags.add(*tags)
         url = reverse('groups:list_links', kwargs={'group_id': self.kwargs['group_id']})
