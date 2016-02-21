@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}{% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -34,8 +35,8 @@
 
     <main role="main">
       {% block content %}{% endblock %}
-    </main> 
-    
+    </main>
+
     <script src="{% static 'vendor/jquery-1.12.0.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js' %}"></script>
     {% block scripts %}{% endblock %}
