@@ -91,6 +91,7 @@ class LinkCreate(LoginRequiredMixin, generic.View):
                 article = parser_response.json()
                 link.title = article.get('title', '')
                 link.content = article.get('content', '')
+                link.description = article.get('excerpt', '')
             link.save()
 
             tags = extract_tags(link.title + ' ' + link.content)

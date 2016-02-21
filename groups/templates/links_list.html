@@ -93,8 +93,7 @@
                 <a href="{% url 'groups:list_links' group_id=group.pk %}?tag={{tag}}"><span class="tag">{{tag}}</span></a>
               {% endfor %}
             </p>
-            <p class="description">Resultado: Hoje temos jovens com habilidades incríveis que não sabem como utilizá-las. E estão ficando solitários, ansiosos e com a única sensação de emoção que lhes é fácil, as redes sociais.
-            </p>
+            <p class="description">{{ item.description }}</p>
           </div>
           <div class="item pull-right text-center actions col-md-1">
             <p><span class="glyphicon glyphicon-heart add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
