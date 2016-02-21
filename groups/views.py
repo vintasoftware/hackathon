@@ -35,7 +35,7 @@ class ListLinks(LoginRequiredMixin, generic.ListView):
         context = super(ListLinks, self).get_context_data(**kwargs)
         context['form'] = LinkForm()
         context['group'] = self.group
-        context['add_user_form'] = AddUserGroupForm(self.group)
+        context['add_user_form'] = AddUserGroupForm(self.request, self.group)
         return context
 
     def get_queryset(self):
@@ -81,7 +81,7 @@ class AddUserGroupView(LoginRequiredMixin, generic.View):
     def post(self, request, *args, **kwargs):
         group = Group.objects.get(pk=kwargs['group_id'])
         # TODO add permission
-        form = AddUserGroupForm(group, request.POST)
+        form = AddUserGroupForm(request, group, request.POST)
         if form.is_valid():
             form.save()
         # TODO user messages framework

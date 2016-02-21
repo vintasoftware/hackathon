@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
+from users.forms import PasswordResetForm
+
 from groups.models import Group, Link, GroupMembership
 
 User = get_user_model()
@@ -31,15 +33,18 @@ class LinkForm(forms.ModelForm):
 class AddUserGroupForm(forms.Form):
     email = forms.EmailField()
 
-    def __init__(self, group, *args, **kwargs):
+    def __init__(self, request, group, *args, **kwargs):
             super().__init__(*args, **kwargs)
+            self.request = request
             self.group = group
 
     def save(self):
         email = self.cleaned_data['email']
         user, created = User.objects.get_or_create(
-            email=email,
-            defaults={'is_active': False})
-        if not created:
-            pass  # TODO send email, create reset password view
+            email=email)
+        if created:
+            reset_form = PasswordResetForm({'email': email})
+            assert reset_form.is_valid()
+            reset_form.save(request=self.request,
+                            email_template_name='users/emails/password_reset_email.html')
         return GroupMembership.objects.create(group=self.group, user=user)
