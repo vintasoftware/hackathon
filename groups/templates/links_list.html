@@ -50,9 +50,13 @@
       </div>
       <div class="col-md-6">
         <h1>{{ group.name }}</h1>
+        <p class="tags">
         {% if tag_name %}
-          <p class="tags"><span>{{ tag_name }}</span><span><a href="">x</a></span></p>
+          <span>{{ tag_name }}</span><span><a href="{% url 'groups:list_links' group_id=group.pk %}">x</a></span>
+        {% else %}
+          <h4>You can search or filter by tag</h4>
         {% endif %}
+        </p>
       </div>
       <div class="col-md-6 right-row-mrg">
         <div class="pull-right">
