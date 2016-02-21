@@ -1,0 +1,66 @@
+//Custom Bootstrap
+
+//Modal
+.modal {
+ overflow-y: auto;
+}
+
+.modal-open {
+ overflow: auto;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+//Navbar
+.navbar-default {
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+
+  .navbar-brand {
+	  font-family: 'Bitter', serif;
+	  font-weight: 700;
+    font-size: 25px;
+  }
+
+  .navbar-brand, .navbar-brand:hover {
+    color: #16a085;
+  }
+
+  li {
+    a {
+      font-size: 18px;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+//Form
+.form-control {
+  border-radius: 0;
+
+  &:focus {
+    outline: none;
+    border-color: $green-color;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+//Button
+.btn {
+  text-transform: uppercase;
+  transition: all 0.8s ease;
+
+  span {
+    transition: all 0.8s ease;
+    color: $green-color;
+  }
+}
