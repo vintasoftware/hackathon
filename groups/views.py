@@ -5,6 +5,7 @@ from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
+from django.http import JsonResponse
 
 from braces.views import LoginRequiredMixin
 
@@ -86,6 +87,15 @@ class LinkCreate(LoginRequiredMixin, generic.View):
 class LinkDetail(generic.DetailView):
 
     model = Link
+
+
+class LinkLike(LoginRequiredMixin, generic.View):
+
+    def post(self, request, *args, **kwargs):
+        link = get_object_or_404(Link, pk=kwargs.get('pk'))
+        link.votes += 1
+        link.save()
+        return JsonResponse({'id': link.pk, 'votes': link.votes})
 
 
 class AddUserGroupView(LoginRequiredMixin, generic.View):

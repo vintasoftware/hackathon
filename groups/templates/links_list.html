@@ -50,7 +50,13 @@
       <div class="links col-md-12">
         {% for item in object_list %}
         <ul class="list-group">
-          <li class="list-group-item"> <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a> <a href="{{ item.url }}">{{ item.url }}</a></li>
+          <li class="list-group-item">
+            <span>{{ item.votes }}</span>
+            <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a>
+            <a href="{{ item.url }}">{{ item.url }}</a>
+            <a href="{% url 'groups:link_like' pk=item.pk %}">Curtir</a>
+            <div class="add_repo" url="{% url 'groups:link_like' pk=item.pk %}">Curtir</div>
+          </li>
         </ul>
         {% endfor %}
       </div>
@@ -65,4 +71,28 @@
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script type="text/javascript">
+
+    $(function() {
+      $('.add_repo').click(function() {
+        var csrftoken = $.cookie('csrftoken');
+        var url = $(this).attr('url');
+        $.ajax({
+          url:  url,
+          type: "POST",
+          headers: {"X-CSRFToken": csrftoken},
+          success: function(data) {
+            console.log(data);
+          }
+        });
+      });
+    });
+
+  </script>
+
+
 {% endblock %}
