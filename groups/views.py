@@ -40,6 +40,7 @@ class ListLinks(LoginRequiredMixin, generic.ListView):
         context['filter_link_Form'] = FilterLinkForm()
         context['group'] = self.group
         context['add_user_form'] = AddUserGroupForm(self.request, self.group)
+        context['tag_name'] = self.request.GET.get('tag', '')
         return context
 
     def get_queryset(self):
