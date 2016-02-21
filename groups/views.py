@@ -12,7 +12,7 @@ from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .forms import GroupForm, LinkForm, AddUserGroupForm, FilterLinkForm
 from .models import Group, Link
 from .concepts import extract_tags
-from .mixins import UserInGroupMixin
+from .mixins import UserInGroupMixin, UserLinkMixin
 
 
 class Home(generic.TemplateView):
@@ -102,7 +102,7 @@ class LinkDetail(generic.DetailView):
     model = Link
 
 
-class LinkLike(UserInGroupMixin, generic.View):
+class LinkLike(UserLinkMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
         link = get_object_or_404(Link, pk=kwargs.get('pk'))
