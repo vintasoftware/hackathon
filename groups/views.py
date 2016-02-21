@@ -108,9 +108,8 @@ class LinkLike(UserLinkMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
         link = get_object_or_404(Link, pk=kwargs.get('pk'))
-        link.votes += 1
-        link.save()
-        return JsonResponse({'id': link.pk, 'votes': link.votes})
+        link.votes.add(request.user)
+        return JsonResponse({'id': link.pk, 'votes': link.votes.count()})
 
 
 class AddUserGroupView(UserInGroupMixin, generic.View):
