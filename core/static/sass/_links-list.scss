@@ -10,11 +10,11 @@
 
  .tags {
     a, span {
-      padding: 2px 5px;
+      padding: 0px 5px;
       display: inline-block;
       background-color: $green-color;
       color: #fff;
-      font-size: 12px;
+      font-size: 13px !important;
     }
   }
   
