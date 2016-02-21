@@ -43,7 +43,14 @@
         {% endfor %}
       </div>
     </div>
+    <div class="row">
+        <h1>Invite users</h1>
+        <form action="{% url 'groups:add_user_to_group' group_id=group.pk %}" method="post">
+          {% csrf_token %}
+          {{ add_user_form.as_p }}
+          <input type="submit" value="Invite" />
+        </form>
+    </div>
   </div>
 </section>
 {% endblock %}
-
