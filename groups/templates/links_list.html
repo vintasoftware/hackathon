@@ -61,7 +61,7 @@
         {% if tag_name %}
           <span>{{ tag_name }}</span><span><a href="{% url 'groups:list_links' group_id=group.pk %}">x</a></span>
         {% else %}
-          <h4>You can search or filter by tag</h4>
+          <h4>Share content, search or filter by tag</h4>
         {% endif %}
         </p>
       </div>
@@ -95,10 +95,12 @@
                 <a href="{% url 'groups:list_links' group_id=group.pk %}?tag={{tag}}"><span class="tag">{{tag}}</span></a>
               {% endfor %}
             </p>
+            {% if item.media_type == 'article' %}
             <p class="description">{{ item.description }}</p>
+            {% endif %}
           </div>
           <div class="item pull-right text-center actions col-md-1">
-            <p><span class="glyphicon glyphicon-heart add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
+            <p><span class="glyphicon glyphicon-heart add_repo {% if item.user_voted|user %}active{%endif%}" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
           </div>
         </div>
       {% endfor %}

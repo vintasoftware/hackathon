@@ -82,7 +82,7 @@
     border-bottom: 1px solid #EAE9D9;
     padding: 10px 0; }
     .links-list .list-item .item .votes {
-      color: #353839;
+      color: #494848;
       font-size: 25px;
       text-align: center; }
     .links-list .list-item .item .votes-text {
@@ -99,8 +99,8 @@
       font-size: 22px;
       color: #e74c3c; }
       .links-list .list-item .item a:hover {
-        color: #952317;
-        text-decoration: none; }
+        text-decoration: none;
+        color: #952317; }
     .links-list .list-item .item .glyphicon {
       font-size: 22px;
       color: #ccc; }
@@ -192,7 +192,7 @@ body {
   height: 100%; }
 
 h1 {
-  color: #353839; }
+  color: #494848; }
 
 h4 {
   color: #95a5a6;
@@ -201,6 +201,8 @@ h4 {
 
 a {
   color: #e74c3c; }
+  a:hover {
+    color: #952317; }
 
 footer {
   margin: 1em auto; }
@@ -242,7 +244,8 @@ label {
   font-size: 16px;
   margin-top: 0.3em;
   text-transform: capitalize;
-  padding-right: 30px; }
+  padding-right: 30px;
+  font-weight: 200; }
 
 .shadow {
   -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
