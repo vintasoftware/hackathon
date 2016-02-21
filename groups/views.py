@@ -85,11 +85,13 @@ class LinkCreate(UserInGroupMixin, generic.View):
         if form.is_valid():
             link = form.save(commit=False)
             link.group = Group.objects.get(pk=self.kwargs['group_id'])
+            # extract data from readability
             parser_client = ParserClient(token=settings.READABILITY_TOKEN)
             parser_response = parser_client.get_article(link.url)
             article = parser_response.json()
             link.title = article.get('title', '')
             link.content = article.get('content', '')
+            link.description = article.get('excerpt', '')
             link.save()
             tags = extract_tags(link.title + ' ' + link.content)
             link.tags.add(*tags)

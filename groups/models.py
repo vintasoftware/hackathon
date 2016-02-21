@@ -23,6 +23,7 @@ class Link(models.Model):
     group = models.ForeignKey(Group)
     media_type = models.CharField(choices=TYPES, max_length=255,
                                   default=TYPES.link)
+    description = models.TextField(null=True, blank=True)
 
     tags = TaggableManager()
 
