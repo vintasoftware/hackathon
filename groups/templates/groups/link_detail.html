@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-   <h1>{{ object.tittle }}</h1>
-    {{ object.content|safe }}
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/inlineDisqussions.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>{{ object.tittle }}</h1>
+    <div class="container">
+        <div class="col-md-7">
+            {{ object.content|safe }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/inlineDisqussions.js' %}"></script>
+    <script>
+     disqus_shortname = 'andersonresende';
+      jQuery(document).ready(function() {
+        jQuery("p:not('.highlighted, .narrow-p')").inlineDisqussions({
+          position: 'right'
+        });
+        jQuery("p.highlighted").inlineDisqussions({
+          identifier: 'disqussion-highlighted',
+          highlighted: true,
+        });
+        jQuery("p.narrow-p").inlineDisqussions({
+          identifier: 'disqussion-narrow-p',
+          position: 'left'
+        });
+        jQuery('#disqussions_wrapper').addClass('container');
+      });
+    </script>
+{% endblock %}

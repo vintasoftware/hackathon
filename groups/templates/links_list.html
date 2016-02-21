@@ -1,11 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Modal -->
+<div class="modal fade" id="add-link-modal" tabindex="-1" role="dialog" aria-labelledby="add-link">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1>Create Links</h1>
+        <form id="add-group-form" action="{% url 'groups:create_link' group_id=group.pk %}" method="POST">
+          <div class="form-group">
+           {% csrf_token %}
+            <input type="url" class="form-control" name="url" id="id_url" placeHolder="Url" required>
+          </div>
+          <span class="error help-block text-center"></span>
+          <div class="text-right">
+            <button type="submit" class="btn btn-default btn-main-reverse" aria-label="submit">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="links-list">
   <div class="container">
-    <div class="row">
+    <div class="card shadow">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Feed</h1>
+          <h4>Some</h4>
+        </div>
+      </div>
+      <div class="col-md-6 right-row">
+        <p class="pull-right"><button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal">Add Link</button></p>
+      </div>
 	    <div class="col-md-12">
-	      <h1>Feed</h1>
         {% for item in object_list %}
         <ul class="list-group">
           <li class="list-group-item"> <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a> <a href="{{ item.url }}">{{ item.url }}</a></li>
@@ -14,12 +43,6 @@
 	    </div>
     </div>
     <div class="row">
-        <h1>Create Links</h1>
-    <form action="{% url 'groups:create_link' group_id=group.pk %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create" />
-    </form>
         <h1>Invite users</h1>
         <form action="{% url 'groups:add_user_to_group' group_id=group.pk %}" method="post">
           {% csrf_token %}
