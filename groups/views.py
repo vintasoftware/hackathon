@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
 from django.conf import settings
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import JsonResponse
 
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
@@ -59,12 +59,16 @@ class ListLinks(UserInGroupMixin, generic.ListView):
         queryset = Link.objects.filter(group=self.group)
         form = FilterLinkForm(self.request.GET)
         if form.is_valid():
-            text = form.cleaned_data['content']
-            queryset = queryset.filter(Q(title__contains=text) | Q(content__contains=text))
+            words = form.cleaned_data['content'].split()
+            q_filters = Q()
+            for word in words:
+                q_filters |= Q(title__contains=word)
+                q_filters |= Q(content__contains=word)
+            queryset = queryset.filter(q_filters)
         elif self.request.GET.get('tag'):
             tag_name = self.request.GET.get('tag')
             queryset = queryset.filter(tags__name=tag_name)
-        return queryset
+        return queryset.annotate(num_votes=Count('votes')).order_by('-num_votes')
 
 
 class GroupCreate(LoginRequiredMixin, generic.View):
