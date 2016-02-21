@@ -29,6 +29,9 @@ class Link(models.Model):
     def __str__(self):
         return self.url
 
+    def user_voted(self, user):
+        return user in self.votes.all()
+
 
 class GroupMembership(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
