@@ -33,3 +33,4 @@ simplegeneric==0.8.1
 tapioca-wrapper==1.0
 traitlets==4.1.0
 whitenoise==2.0.6
+django-model-utils==2.4
