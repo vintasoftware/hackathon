@@ -217,6 +217,13 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
   -webkit-text-fill-color: #555 !important; }
 
+label {
+  color: #95a5a6;
+  font-size: 16px;
+  margin-top: 0.3em;
+  text-transform: capitalize;
+  padding-right: 30px; }
+
 .shadow {
   -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

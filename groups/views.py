@@ -12,6 +12,7 @@ from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .forms import GroupForm, LinkForm, AddUserGroupForm, FilterLinkForm
 from .models import Group, Link
 from .concepts import extract_tags
+from .mixins import UserInGroupMixin
 
 
 class Home(generic.TemplateView):
@@ -36,7 +37,7 @@ class ListGroups(LoginRequiredMixin, generic.ListView):
         return self.request.user.group_set.all()
 
 
-class ListLinks(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+class ListLinks(UserInGroupMixin, generic.ListView):
     template_name = 'links_list.html'
     raise_exception = True
 
@@ -76,7 +77,7 @@ class GroupCreate(LoginRequiredMixin, generic.View):
         return redirect('groups:list_groups')
 
 
-class LinkCreate(LoginRequiredMixin, generic.View):
+class LinkCreate(UserInGroupMixin, generic.View):
     raise_exception = True
 
     def post(self, request, *args, **kwargs):
@@ -84,16 +85,14 @@ class LinkCreate(LoginRequiredMixin, generic.View):
         if form.is_valid():
             link = form.save(commit=False)
             link.group = Group.objects.get(pk=self.kwargs['group_id'])
-            if link.media_type == Link.TYPES.article:
-                # extract data from readability
-                parser_client = ParserClient(token=settings.READABILITY_TOKEN)
-                parser_response = parser_client.get_article(link.url)
-                article = parser_response.json()
-                link.title = article.get('title', '')
-                link.content = article.get('content', '')
-                link.description = article.get('excerpt', '')
+            # extract data from readability
+            parser_client = ParserClient(token=settings.READABILITY_TOKEN)
+            parser_response = parser_client.get_article(link.url)
+            article = parser_response.json()
+            link.title = article.get('title', '')
+            link.content = article.get('content', '')
+            link.description = article.get('excerpt', '')
             link.save()
-
             tags = extract_tags(link.title + ' ' + link.content)
             link.tags.add(*tags)
         url = reverse('groups:list_links', kwargs={'group_id': self.kwargs['group_id']})
@@ -105,7 +104,7 @@ class LinkDetail(generic.DetailView):
     model = Link
 
 
-class LinkLike(LoginRequiredMixin, generic.View):
+class LinkLike(UserInGroupMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
         link = get_object_or_404(Link, pk=kwargs.get('pk'))
@@ -114,10 +113,10 @@ class LinkLike(LoginRequiredMixin, generic.View):
         return JsonResponse({'id': link.pk, 'votes': link.votes})
 
 
-class AddUserGroupView(LoginRequiredMixin, generic.View):
+class AddUserGroupView(UserInGroupMixin, generic.View):
     def post(self, request, *args, **kwargs):
         group = Group.objects.get(pk=kwargs['group_id'])
-        # TODO add permission
+        # TODO add permission ( only admins)
         form = AddUserGroupForm(request, group, request.POST)
         if form.is_valid():
             form.save()
