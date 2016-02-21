@@ -41,6 +41,7 @@
       .votes {
         color: #555;
         font-size: 25px;
+        text-align: center;
       }
 
       .sub-text {
@@ -79,6 +80,8 @@
 
       .glyphicon-heart:hover {
         color: $red-color;
+        
+        cursor: pointer;
       }
     }
   }

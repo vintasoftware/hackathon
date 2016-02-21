@@ -74,7 +74,7 @@
       {% for item in object_list %}
         <li class="list-group-item">
           <span class="item">
-            <p class="votes">{{ item.votes }}</p>
+            <p class="votes" id="{{ item.pk }}">{{ item.votes }}</p>
             <p class="sub-text">votes</p>
           </span>
           <span class="item">
@@ -87,7 +87,7 @@
             <!-- <a  class="sub-text" href="{{ item.url }}">{{ item.url }}</a> -->
           </span>
           <span class="item pull-right text-center actions">
-            <p><span class="glyphicon glyphicon-heart" class="add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
+            <p><span class="glyphicon glyphicon-heart add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
             <p><a href=""><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></p>
           </span>
         </li>
@@ -111,7 +111,7 @@
           type: "POST",
           headers: {"X-CSRFToken": csrftoken},
           success: function(data) {
-            console.log(data);
+            $('#' + data.id).html(data.votes);
           }
         });
       });
