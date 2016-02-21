@@ -60,6 +60,12 @@
   .links-list .brdcrumb {
     margin: 20px 0 0;
     border-bottom: 1px solid rgba(204, 204, 204, 0.19); }
+  .links-list .tags a, .links-list .tags span {
+    padding: 2px 5px;
+    display: inline-block;
+    background-color: #16a085;
+    color: #fff;
+    font-size: 12px; }
   .links-list h4 {
     margin-bottom: 20px; }
   .links-list .feed-header {
@@ -75,12 +81,6 @@
     border-radius: 0;
     border-bottom: 1px solid #EAE9D9;
     padding: 10px 0; }
-    .links-list .list-item .item .tags a {
-      padding: 2px 5px;
-      display: inline-block;
-      background-color: #16a085;
-      color: #fff;
-      font-size: 12px; }
     .links-list .list-item .item .votes {
       color: #555;
       font-size: 25px;

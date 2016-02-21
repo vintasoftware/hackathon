@@ -7,6 +7,16 @@
     margin: 20px 0 0;
     border-bottom: 1px solid rgba(204, 204, 204, 0.19);
   }
+
+ .tags {
+    a, span {
+      padding: 2px 5px;
+      display: inline-block;
+      background-color: $green-color;
+      color: #fff;
+      font-size: 12px;
+    }
+  }
   
   h4 {
     margin-bottom: 20px;
@@ -35,15 +45,6 @@
     padding: 10px 0;
 
     .item {
-      .tags {
-        a {
-          padding: 2px 5px;
-          display: inline-block;
-          background-color: $green-color;
-          color: #fff;
-          font-size: 12px;
-        }
-      }
 
       .votes {
         color: #555;
