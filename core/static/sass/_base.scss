@@ -5,21 +5,41 @@ body {
   padding-top: 50px;
   background-color: #F5F5F5;
   font-size: 18px;
+  height: 100%;
 }
-
-button {
-  text-transform: uppercase;
-  transition: all 0.8s ease;
-}
-
 
 h1 {
   color: $red-color;
 }
 
 h4 {
-  color: #95a5a6;
+  color: $gray-color;
+  font-size: 16px;
   margin-top: 0.3em;
+}
+
+a {
+  color: #777;
+
+  &:hover {
+
+  }
+}
+
+footer {
+  margin: 1em auto;
+
+  .footer-text {
+    p {
+      font-size: 14px;
+      color: $gray-color;
+      margin: 0;
+    }
+
+    span {
+      color: $green-color;
+    }
+  }
 }
 
 .btn-main {
@@ -31,6 +51,10 @@ h4 {
   &:hover {
     background-color: transparent;
     color: $green-color;
+
+    span {
+      color: $green-color;
+    }
   }
 }
 
@@ -43,6 +67,10 @@ h4 {
   &:hover {
     background-color: $green-color;
     color: #fff;
+
+    span {
+      color: #fff;
+    }
   }
 }
 
@@ -54,5 +82,10 @@ h4 {
   
 .card {
   margin: 2em 15px;
+  padding: 0 1em;
   background-color: #fff;
+}
+
+.right-row-mrg {
+  margin: 20px 0;
 }

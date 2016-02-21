@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="mask"></div>
 <section class="intro">
   <div class="container">
     <div class="jumbotron header">
       <div class="text">
-	      <h1>Some title here</h1>
-	      <p>Put the pitch here</p>
-	      <p><button type="button" class="btn btn-main btn-lg">sign up</button></p>
+	      <h1>Share knowledge</h1>
+	      <p>Create groups, share links & see what your friends are learning</p>
+	      <p><a href="{% url 'users:create' %}" role="button" class="btn btn-main btn-lg btn-signup">sign up</a></p>
       </div>
     </div>
   </div>

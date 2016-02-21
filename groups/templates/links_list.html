@@ -24,23 +24,24 @@
 
 <section class="links-list">
   <div class="container">
-    <div class="card shadow">
-      <div class="row">
-        <div class="col-md-6">
-          <h1>Feed</h1>
-          <h4>Some</h4>
-        </div>
+    <div class="row card shadow">
+      <div class="col-md-12 brdcrumb">
+        <p><a href="{% url 'groups:list_groups' %}">Back</a></p>
       </div>
-      <div class="col-md-6 right-row">
-        <p class="pull-right"><button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal">Add Link</button></p>
+      <div class="col-md-6">
+        <h1>Feed</h1>
+        <h4>Subtitle</h4>
       </div>
-	    <div class="col-md-12">
+      <div class="col-md-6 right-row-mrg">
+        <p class="pull-right"><button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button></p>
+      </div>
+      <div class="links col-md-12">
         {% for item in object_list %}
         <ul class="list-group">
           <li class="list-group-item"> <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a> <a href="{{ item.url }}">{{ item.url }}</a></li>
         </ul>
         {% endfor %}
-	    </div>
+      </div>
     </div>
   </div>
 </section>

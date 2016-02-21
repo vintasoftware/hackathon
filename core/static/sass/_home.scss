@@ -1,19 +1,22 @@
-// Home 
+// Home
 
-.intro {
+  .intro {
+  height: 540px;
   background-image: url("#{$siteurl}/static/images/back.jpg");
   background-size: cover;
   background-attachment: fixed;
-
+  position: relative;
+  width: 100%;
+    
   .header {
     background: transparent;
-    display: table;
-    height: 100%;
-    width: 100%;
-  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
     .text {
-      display: table-cell;
-      vertical-align: middle;
       text-align: center;
 
       h1 {
@@ -23,10 +26,23 @@
       h1, p {
         color: #fff;
       }
+
+      p {
+        font-size: 25px;
+      }
     }
   }
-}
 
-.pitch {
-  min-height: 300px;
+  .btn-signup {
+    background-color: $red-color;
+    border-color: $red-color;
+    margin-top: 10px;
+    font-size: 25px;
+    padding: 13px 22px;
+    min-width: 250px;
+
+    &:hover {
+      color: $red-color;
+    }
+  }
 }
