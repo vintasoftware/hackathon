@@ -22,6 +22,26 @@
   </div>
 </div>
 
+<div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog" aria-labelledby="add-user">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1>Invite Teammates</h1>
+        <form id="add-user-form" action="{% url 'groups:add_user_to_group' group_id=group.pk %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="url" class="form-control" name="url" id="id_url" placeHolder="Url" required>
+          </div>
+          <span class="error help-block text-center"></span>
+          <div class="text-right">
+            <button type="submit" class="btn btn-default btn-main-reverse" aria-label="submit">Invite</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="links-list">
   <div class="container">
     <div class="row card shadow">
@@ -45,7 +65,10 @@
         <h4>Subtitle</h4>
       </div>
       <div class="col-md-6 right-row-mrg">
-        <p class="pull-right"><button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button></p>
+        <div class="pull-right">
+          <button type="button" class="btn btn-main" data-toggle="modal" data-target="#add-user-modal">Invite Teammates</button>
+          <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button>
+        </div>
       </div>
       <div class="links col-md-12">
         {% for item in object_list %}
@@ -60,14 +83,6 @@
         </ul>
         {% endfor %}
       </div>
-    </div>
-    <div class="row">
-        <h1>Invite users</h1>
-        <form action="{% url 'groups:add_user_to_group' group_id=group.pk %}" method="post">
-          {% csrf_token %}
-          {{ add_user_form.as_p }}
-          <input type="submit" value="Invite" />
-        </form>
     </div>
   </div>
 </section>

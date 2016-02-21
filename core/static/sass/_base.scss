@@ -22,7 +22,7 @@ a {
   color: #777;
 
   &:hover {
-
+    text-decoration: underline;
   }
 }
 
@@ -72,6 +72,11 @@ footer {
       color: #fff;
     }
   }
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-text-fill-color: #555 !important;
 }
 
 .shadow {

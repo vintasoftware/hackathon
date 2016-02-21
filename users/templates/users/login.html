@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Login" />
-</form>
+<section class="user">
+  <div class="container">
+    <div class="card shadow">
+      <h1>Login</h1>
+      <form id="login-form" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="email" class="form-control" name="username" id="id_username" placeHolder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" id="id_password" placeHolder="Password" required>
+        </div>
+        <span class="error help-block text-center"></span>
+        <div class="text-right">
+          <button type="submit" class="btn btn-default btn-main" aria-label="submit">Login</button>
+        </div>
+      </form>
+	  </div>
+  </div>
+</section>
 {% endblock %}

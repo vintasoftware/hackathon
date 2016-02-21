@@ -50,5 +50,7 @@ class AddUserGroupForm(forms.Form):
             reset_form = PasswordResetForm({'email': email})
             assert reset_form.is_valid()
             reset_form.save(request=self.request,
-                            email_template_name='users/emails/password_reset_email.html')
+                            subject_template_name="users/emails/subject_password_reset.html",
+                            email_template_name='users/emails/password_reset_email.html',
+                            from_email='alexandria@vinta.com.br')
         return GroupMembership.objects.create(group=self.group, user=user)

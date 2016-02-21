@@ -8,11 +8,10 @@
       <div class="modal-body">
         <h1>Add Group</h1>
         <form id="add-group-form" action="{% url 'groups:create_group' %}" method="POST">
+          {% csrf_token %}
           <div class="form-group">
-           {% csrf_token %}
             <input type="text" class="form-control" name="name" id="id_name" placeHolder="Name" required>
           </div>
-          <span class="error help-block text-center"></span>
           <div class="text-right">
             <button type="submit" class="btn btn-default btn-main-reverse" aria-label="submit">Add</button>
           </div>

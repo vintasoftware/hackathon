@@ -11,5 +11,5 @@ CreateUserForm = UserCreationForm
 class PasswordResetForm(PasswordResetForm):
     def get_users(self, email):
         users = User.objects.filter(
-            email__iexact=email, is_active=False)
+            email__iexact=email)
         return (u for u in users)
