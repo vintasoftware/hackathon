@@ -7,7 +7,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.http import JsonResponse
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, UserPassesTestMixin
 
 from .forms import GroupForm, LinkForm, AddUserGroupForm, FilterLinkForm
 from .models import Group, Link
@@ -31,8 +31,13 @@ class ListGroups(LoginRequiredMixin, generic.ListView):
         return self.request.user.group_set.all()
 
 
-class ListLinks(LoginRequiredMixin, generic.ListView):
+class ListLinks(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     template_name = 'links_list.html'
+    raise_exception = True
+
+    def test_func(self, user):
+        group = get_object_or_404(Group, pk=self.kwargs['group_id'])
+        return group in user.group_set.all()
 
     def get_context_data(self, **kwargs):
         context = super(ListLinks, self).get_context_data(**kwargs)
