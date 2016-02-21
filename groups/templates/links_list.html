@@ -81,7 +81,7 @@
       {% for item in object_list %}
         <div class="list-item col-md-12" id="{{ item.pk }}">
           <div class="item col-md-1">
-            <p class="votes">{{ item.votes }}</p>
+            <p class="votes">{{ item.votes.count }}</p>
             <p class="votes-text">votes</p>
           </div>
           <div class="item col-md-10">

@@ -4,7 +4,6 @@ from model_utils import Choices
 from taggit.managers import TaggableManager
 
 
-
 class Group(models.Model):
     name = models.CharField(max_length=255)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL,
@@ -19,7 +18,7 @@ class Link(models.Model):
     url = models.URLField()
     title = models.CharField(max_length=750, null=True, blank=True)
     content = models.TextField(null=True, blank=True)
-    votes = models.IntegerField(null=True, blank=True, default=0)
+    votes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes')
     group = models.ForeignKey(Group)
     media_type = models.CharField(choices=TYPES, max_length=255,
                                   default=TYPES.link)
