@@ -74,7 +74,7 @@
       {% for item in object_list %}
         <li class="list-group-item">
           <span class="item">
-            <p class="votes">15</p>
+            <p class="votes">{{ item.votes }}</p>
             <p class="sub-text">votes</p>
           </span>
           <span class="item">
@@ -87,26 +87,12 @@
             <!-- <a  class="sub-text" href="{{ item.url }}">{{ item.url }}</a> -->
           </span>
           <span class="item pull-right text-center actions">
-            <p><a href=""><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a></p>
+            <p><span class="glyphicon glyphicon-heart" class="add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
             <p><a href=""><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></p>
           </span>
         </li>
       {% endfor %}
       </ul>
-<!--       </div>
-      <div class="links col-md-12">
-        {% for item in object_list %}
-        <ul class="list-group">
-          <li class="list-group-item">
-            <span>{{ item.votes }}</span>
-            <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a>
-            <a href="{{ item.url }}">{{ item.url }}</a>
-            <a href="{% url 'groups:link_like' pk=item.pk %}">Curtir</a>
-            <div class="add_repo" url="{% url 'groups:link_like' pk=item.pk %}">Curtir</div>
-          </li>
-        </ul>
-        {% endfor %}
-      </div> -->
     </div>
   </div>
 </section>
