@@ -106,7 +106,7 @@
           type: "POST",
           headers: {"X-CSRFToken": csrftoken},
           success: function(data) {
-            var item = '#' + data.id_content;
+            var item = '#' + data.id;
             $(item + " .votes").html(data.votes);
             $(item + " .glyphicon").addClass("active");
           }
