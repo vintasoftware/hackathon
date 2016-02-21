@@ -6,6 +6,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h1>Create Links</h1>
         <form id="add-group-form" action="{% url 'groups:create_link' group_id=group.pk %}" method="POST">
           <div class="form-group">
@@ -26,6 +27,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h1>Invite Teammates</h1>
         <form id="add-user-form" action="{% url 'groups:add_user_to_group' group_id=group.pk %}" method="POST">
           {% csrf_token %}
