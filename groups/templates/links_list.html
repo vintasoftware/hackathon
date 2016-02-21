@@ -30,7 +30,7 @@
         <form id="add-user-form" action="{% url 'groups:add_user_to_group' group_id=group.pk %}" method="POST">
           {% csrf_token %}
           <div class="form-group">
-            <input type="url" class="form-control" name="url" id="id_url" placeHolder="Url" required>
+            <input type="email" class="form-control" name="email" id="id_email" placeHolder="Email" required>
           </div>
           <span class="error help-block text-center"></span>
           <div class="text-right">
@@ -49,22 +49,38 @@
         <p><a href="{% url 'groups:list_groups' %}">Back</a></p>
       </div>
       <div class="col-md-6">
-        <h1>Feed</h1>
-        <h4>Subtitle</h4>
+        <h1>{{ group.name }}</h1>
+        <h4>Some cool text</h4>
       </div>
       <div class="col-md-6 right-row-mrg">
         <div class="pull-right">
           <button type="button" class="btn btn-main" data-toggle="modal" data-target="#add-user-modal">Invite Teammates</button>
           <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button>
         </div>
-      </div>
-      <div class="links col-md-12">
-        {% for item in object_list %}
-        <ul class="list-group">
-          <li class="list-group-item"> <a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a> <a href="{{ item.url }}">{{ item.url }}</a></li>
-        </ul>
-        {% endfor %}
-      </div>
+      </div>  
+      <ul class="list-group col-md-12">
+      {% for item in object_list %}
+        <li class="list-group-item">
+          <span class="item">
+            <p class="votes">15</p>
+            <p class="sub-text">votes</p>
+          </span>
+          <span class="item">
+            <p><a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a></p>
+            <p>
+              <a href=""><span class="tag">tag1</span></a>
+              <a href=""><span class="tag">tag1</span></a>
+              <a href=""><span class="tag">tag1</span></a>
+            </p>
+            <!-- <a  class="sub-text" href="{{ item.url }}">{{ item.url }}</a> -->
+          </span>
+          <span class="item pull-right text-center actions">
+            <p><a href=""><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a></p>
+            <p><a href=""><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></p>
+          </span>
+        </li>
+      {% endfor %}
+      </ul>
     </div>
   </div>
 </section>
