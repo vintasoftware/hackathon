@@ -50,7 +50,7 @@
       </div>
       <div class="col-md-6">
         <h1>{{ group.name }}</h1>
-        <h4>Some cool text</h4>
+        <h4>Some cool text here</h4>
       </div>
       <div class="col-md-6 right-row-mrg">
         <div class="pull-right">
@@ -59,14 +59,9 @@
         </div>
       </div>
       <div class="search-filter col-md-12">
-        <form id="add-group-form" action="{% url 'groups:list_links' group_id=group.pk %}" method="GET">
-          <div class="form-group">
-            <input type="text" class="form-control" name="content" id="id_content" placeHolder="insert..." required>
-          </div>
-          <span class="error help-block text-center"></span>
-          <div class="text-right">
-            <button type="submit" class="btn btn-default btn-main-reverse" aria-label="submit">Filter</button>
-          </div>
+        <form id="add-group-form" class="form-inline search-form" action="{% url 'groups:list_links' group_id=group.pk %}" method="GET">
+          <input type="text" class="form-control input-lg" name="content" id="id_content" placeHolder="Search..." required>
+          <button type="submit" class="btn btn-default btn-main-reverse btn-lg" aria-label="submit">Search</button>
         </form>
       </div>
       <div class="list col-md-12">
@@ -79,9 +74,9 @@
           <div class="item col-md-10">
             <p><a href="{% url 'groups:link_detail' pk=item.pk %}">{{item.title}}</a></p>
             <p class="tags">
-              <a href="">tag1</a>
-              <a href="">tag1</a>
-              <a href="">tag1</a>
+              {% for tag in item.tags.all|slice:":4" %}
+                <a href="{% url 'groups:list_links' group_id=group.pk %}?tag={{tag}}"><span class="tag">{{tag}}</span></a>
+              {% endfor %}
             </p>
             <p class="description">Resultado: Hoje temos jovens com habilidades incríveis que não sabem como utilizá-las. E estão ficando solitários, ansiosos e com a única sensação de emoção que lhes é fácil, as redes sociais.
             </p>
@@ -100,7 +95,6 @@
 {% block scripts %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <script type="text/javascript">
-
     $(function() {
       $('.add_repo').click(function() {
         var csrftoken = $.cookie('csrftoken');
