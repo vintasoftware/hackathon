@@ -64,6 +64,11 @@
     margin-bottom: 20px; }
   .links-list .feed-header {
     margin-bottom: 2em; }
+  .links-list .search-form {
+    margin: 2em auto;
+    text-align: center; }
+    .links-list .search-form input {
+      width: 70%; }
   .links-list .list {
     margin: 2em auto; }
   .links-list .list-item {
