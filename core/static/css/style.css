@@ -57,9 +57,6 @@
 
 .links-list {
   margin: 1em auto; }
-  .links-list .brdcrumb {
-    margin: 20px 0 0;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.19); }
   .links-list .tags a, .links-list .tags span {
     padding: 0px 5px;
     display: inline-block;
@@ -265,5 +262,9 @@ label {
   font-size: 13px;
   color: #e74c3c;
   text-align: right; }
+
+.brdcrumb {
+  margin: 20px 0 0;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.19); }
 
 /*# sourceMappingURL=style.css.map */
