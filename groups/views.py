@@ -17,6 +17,11 @@ from .concepts import extract_tags
 class Home(generic.TemplateView):
     template_name = 'landing_page.html'
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return redirect('groups:list_groups')
+        return super(Home, self).get(request, *args, **kwargs)
+
 
 class ListGroups(LoginRequiredMixin, generic.ListView):
     model = Group
