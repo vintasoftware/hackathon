@@ -2,5 +2,33 @@
 
 //Modal
 .modal-body {
-  margin: 20px;
+  padding: 20px;
+}
+
+//Navbar
+.navbar-default {
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+
+  .navbar-brand {
+	  font-family: 'Bitter', serif;
+	  font-weight: 700;
+    font-size: 25px;
+  }
+
+  .navbar-brand, .navbar-brand:hover {
+    color: #16a085;
+  }
+
+  li {
+    a {
+      font-size: 18px;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

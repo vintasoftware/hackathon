@@ -9,6 +9,11 @@ $medium-devices-min: "(min-width: 992px)";
 $large-devices-min: "(min-width: 1200px)";
 $extra-large-devices: "(min-width: 1440px)";
 
+$siteurl: "http://localhost:8000";
+
+$green-color: #16a085;
+$red-color: #e74c3c;
+
 @import "home";
 @import "groups-list";
 @import "links-list";

@@ -1,15 +1,32 @@
 // Home 
 
-.home {
-  h1 {
-    font-size: 60px;
-  }
-  
-  h2 {
-  	margin: 10px auto 30px;
-  }
+.intro {
+  background-image: url("#{$siteurl}/static/images/back.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 
   .header {
-  	text-align: center;
+    background: transparent;
+    display: table;
+    height: 100%;
+    width: 100%;
+  
+    .text {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+
+      h1 {
+        font-family: 'Bitter', serif;
+      }
+
+      h1, p {
+        color: #fff;
+      }
+    }
   }
+}
+
+.pitch {
+  min-height: 300px;
 }
