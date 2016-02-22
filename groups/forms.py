@@ -1,5 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.template import Context
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
+from django.contrib.sites.shortcuts import get_current_site
 
 from users.forms import PasswordResetForm
 
@@ -56,5 +60,23 @@ class AddUserGroupForm(forms.Form):
                             subject_template_name="users/emails/subject_password_reset.html",
                             email_template_name='users/emails/password_reset_email.html',
                             from_email='alexandria@vinta.com.br')
+        else:
+            self.send_added_email(user)
         GroupMembership.objects.create(group=self.group, user=user)
         return created
+
+    def send_added_email(self, user):
+        current_site = get_current_site(self.request)
+        domain = current_site.domain
+        subject = "Hey, someone added you to a group in Alexandria!"
+        to = [user.email]
+        from_email = 'alexandria@vinta.com.br'
+        context = {
+            'group': self.group,
+            'domain': domain,
+        }
+        message = get_template('users/emails/added.html').render(
+            Context(context))
+        msg = EmailMessage(subject, message, to=to, from_email=from_email)
+        msg.content_subtype = 'html'
+        msg.send()
