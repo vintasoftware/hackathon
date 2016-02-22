@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
 from django.conf import settings
+from django.contrib import messages
 from django.db.models import Q, Count
 from django.http import JsonResponse
 
@@ -122,7 +123,18 @@ class AddUserGroupView(UserInGroupMixin, generic.View):
         # TODO add permission ( only admins)
         form = AddUserGroupForm(request, group, request.POST)
         if form.is_valid():
-            form.save()
-        # TODO user messages framework
+            try:
+                created = form.save()
+            except:
+                message = 'The user is already in the group!'
+                extra_tags = 'alert-warning'
+            else:
+                if created:
+                    message = 'The user received an invitation email to access the group!'
+                    extra_tags = 'alert-info'
+                else:
+                    message = 'The user was added to the group!'
+                    extra_tags = 'alert-success'
+            messages.add_message(request, messages.INFO, message, extra_tags=extra_tags)
         url = reverse('groups:list_links', kwargs={'group_id': self.kwargs['group_id']})
         return redirect(url)

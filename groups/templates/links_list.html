@@ -73,6 +73,13 @@
           <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button>
         </div>
       </div>
+      {% if messages %}
+        <div class="col-md-12">
+          {% for message in messages %}
+            <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
       <div class="search-filter col-md-12">
         <form id="add-group-form" class="form-inline search-form" action="{% url 'groups:list_links' group_id=group.pk %}" method="GET">
           <input type="text" class="form-control input-lg" name="content" id="id_content" placeHolder="Search...">
