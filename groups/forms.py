@@ -56,4 +56,5 @@ class AddUserGroupForm(forms.Form):
                             subject_template_name="users/emails/subject_password_reset.html",
                             email_template_name='users/emails/password_reset_email.html',
                             from_email='alexandria@vinta.com.br')
-        return GroupMembership.objects.create(group=self.group, user=user)
+        GroupMembership.objects.create(group=self.group, user=user)
+        return created
