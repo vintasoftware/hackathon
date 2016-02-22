@@ -9,11 +9,11 @@
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1>Create Links</h1>
+        <h1>Create Content</h1>
         <form id="add-group-form" action="{% url 'groups:create_link' group_id=group.pk %}" method="POST">
           {% csrf_token %}
           <div class="form-group">
-           <label for="id_media_type_0"><input id="id_media_type_0" name="media_type" type="radio" value="link"> link</label>
+           <label for="id_media_type_0"><input id="id_media_type_0" name="media_type" type="radio" value="link" checked="checked"> link</label>
            <label for="id_media_type_1"><input id="id_media_type_1" name="media_type" type="radio" value="article"> article</label>
            <label for="id_media_type_2"><input id="id_media_type_2" name="media_type" type="radio" value="video"> video</label>
           </div>
@@ -70,7 +70,7 @@
       <div class="col-md-6 right-row-mrg">
         <div class="pull-right">
           <button type="button" class="btn btn-main" data-toggle="modal" data-target="#add-user-modal">Invite Teammates</button>
-          <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Link</button>
+          <button type="button" class="btn btn-main-reverse" data-toggle="modal" data-target="#add-link-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Content</button>
         </div>
       </div>
       {% if messages %}
