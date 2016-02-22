@@ -7,6 +7,14 @@
     margin-bottom: 20px;
   }
 
+  .toolbar {
+    text-align: right;
+
+    @media #{$extra-small-devices} {
+      text-align: left;  
+    }
+  }
+
   li {
     margin: 15px auto;
     list-style: none;

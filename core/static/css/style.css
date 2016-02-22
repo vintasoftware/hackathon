@@ -34,6 +34,11 @@
   margin: 1em auto; }
   .groups h4 {
     margin-bottom: 20px; }
+  .groups .toolbar {
+    text-align: right; }
+    @media (max-width: 440px) {
+      .groups .toolbar {
+        text-align: left; } }
   .groups li {
     margin: 15px auto;
     list-style: none; }
