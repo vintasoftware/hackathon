@@ -32,6 +32,8 @@ class Link(models.Model):
     def user_voted(self, user):
         return user in self.votes.all()
 
+    def get_title(self):
+        return self.title or self.url
 
 class GroupMembership(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
