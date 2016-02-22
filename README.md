@@ -1,12 +1,3 @@
-# bikes-perf
+# Alexandria
 
-## How to deploy
-- `heroku create --app app-name-here`
-- `heroku git:remote -a app-name-here`
-- `heroku config:set DJANGO_SETTINGS_MODULE=core.settings.production`
-- `heroku config:set 'SECRET_KEY=secret-key-here'`
-- `heroku addons:create heroku-postgresql:hobby-dev`
-- `git push heroku master`
-- `heroku run python manage.py migrate`
-# hackathon
-# hackathon
+Alexandria is a content aggregator curated by people in the same company (or group). It allows people to share, discuss and categorize links, web articles and videos, so they can be used as a knowledge base. It not only enforces people to read but gives them access to content curated by their peers.
