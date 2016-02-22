@@ -47,7 +47,16 @@
 }
 
 .pitch {
+  margin-bottom: 2em;
   padding: 2em;
   background-color: #fff;
   text-align: center;
+
+  .feature {
+    padding: 1em;
+  }
+
+  p {
+    color: $gray-color;
+  }
 }

@@ -31,9 +31,14 @@
       color: #e74c3c; }
 
 .pitch {
+  margin-bottom: 2em;
   padding: 2em;
   background-color: #fff;
   text-align: center; }
+  .pitch .feature {
+    padding: 1em; }
+  .pitch p {
+    color: #95a5a6; }
 
 .groups {
   margin: 1em auto; }

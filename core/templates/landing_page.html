@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
@@ -15,18 +16,21 @@
 </section>
 <section class="pitch shadow">
   <div class="container">
-    <div class="col-md-4">
-    	<h3></h3>
-    	<p>
+    <div class="feature col-md-4">
+      <img src="{% static 'images/share.png' %}" alt="Share">
+    	<h3>Share</h3>
+    	<p>A incrível geração de pessoas que escrevem textos na Internet falando de seu grupo restrito como se fosse uma incrível geração.</p>
     </div>
-    <div class="col-md-4">
-    	<h3></h3>
-    	<p>
+    <div class="feature col-md-4">
+      <img src="{% static 'images/discuss.png' %}">
+    	<h3>Discuss</h3>
+    	<p>A incrível geração de pessoas que escrevem textos na Internet falando de seu grupo restrito como se fosse uma incrível geração.</p>
     </div>
-    <div class="col-md-4">
-		<h3></h3>
-    	<p>	
-	</div>
+    <div class="feature col-md-4">
+      <img src="{% static 'images/categorize.png' %}">
+		  <h3>Categorize</h3>
+    	<p>A incrível geração de pessoas que escrevem textos na Internet falando de seu grupo restrito como se fosse uma incrível geração.</p>
+	 </div>
   </div>
 </section>
 {% endblock %}
