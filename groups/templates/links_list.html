@@ -110,7 +110,7 @@
             <p class="description">{{ item.description }}</p>
             {% endif %}
           </div>
-          <div class="item text-right actions col-md-1 col-sm-1 col-xs-12">
+          <div class="item text-right col-md-1 col-sm-1 col-xs-12">
             {% user_voted user item as show_heart %}
             <p><span class="glyphicon glyphicon-heart add_repo {% if show_heart %}active{% endif %}" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
           </div>

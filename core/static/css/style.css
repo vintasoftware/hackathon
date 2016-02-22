@@ -75,9 +75,6 @@
     @media (max-width: 992px) {
       .links-list .toolbar {
         text-align: left; } }
-    @media (max-width: 440px) {
-      .links-list .toolbar {
-        text-align: center; } }
     .links-list .toolbar button {
       margin-bottom: 10px; }
   .links-list .feed-header {
@@ -134,6 +131,9 @@
       color: #ccc; }
       .links-list .list-item .item .glyphicon.active {
         color: #e74c3c; }
+      @media (max-width: 440px) {
+        .links-list .list-item .item .glyphicon {
+          padding-top: 5px; } }
     .links-list .list-item .item .glyphicon:hover {
       color: #e74c3c;
       cursor: pointer; }
