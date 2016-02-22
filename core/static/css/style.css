@@ -152,6 +152,11 @@ body.modal-open {
   background-color: #fff;
   border: none;
   border-radius: 0; }
+  .navbar-default .navbar-right {
+    float: right !important; }
+  @media (max-width: 768px) {
+    .navbar-default .navbar-header:after {
+      clear: none; } }
   .navbar-default .navbar-brand {
     font-family: 'Bitter', serif;
     font-weight: 700;
@@ -161,6 +166,9 @@ body.modal-open {
   .navbar-default li a {
     font-size: 18px;
     font-weight: 500; }
+    @media (max-width: 768px) {
+      .navbar-default li a {
+        padding: 7px 15px; } }
 
 .form-control {
   border-radius: 0; }
@@ -208,7 +216,7 @@ footer {
     color: #95a5a6;
     margin: 0; }
   footer .footer-text span {
-    color: #16a085; }
+    color: #95a5a6; }
 
 .btn-main {
   background-color: #16a085;
