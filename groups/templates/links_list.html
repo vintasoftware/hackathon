@@ -9,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1>Create Content</h1>
+        <h1>Add Content</h1>
         <form id="add-group-form" action="{% url 'groups:create_link' group_id=group.pk %}" method="POST">
           {% csrf_token %}
           <div class="form-group">
