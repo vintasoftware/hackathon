@@ -143,8 +143,12 @@
   font-size: 18px;
   color: #000;
   line-height: 30px; }
+  .link-detail .container-fluid {
+    padding: 0; }
   .link-detail .card {
-    padding: 0 2em 2em; }
+    padding: 0 2em 2em;
+    margin-left: 0;
+    margin-right: 0; }
   .link-detail h1 {
     line-height: 50px;
     margin-bottom: 1em;
