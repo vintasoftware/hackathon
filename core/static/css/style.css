@@ -30,6 +30,11 @@
     .intro .btn-signup:hover {
       color: #e74c3c; }
 
+.pitch {
+  padding: 2em;
+  background-color: #fff;
+  text-align: center; }
+
 .groups {
   margin: 1em auto; }
   .groups h4 {
@@ -240,6 +245,9 @@ h4 {
   color: #95a5a6;
   font-size: 16px;
   margin-top: 0.3em; }
+
+h3 {
+  color: #e74c3c; }
 
 a {
   color: #e74c3c; }
