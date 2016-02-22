@@ -33,3 +33,6 @@ from dj_database_url import parse as db_url
 DATABASES = {
     'default': config('DATABASE_URL', cast=db_url)
 }
+
+# READABILITY
+READABILITY_TOKEN = config('READABILITY_TOKEN', default='')

@@ -34,6 +34,11 @@
   margin: 1em auto; }
   .groups h4 {
     margin-bottom: 20px; }
+  .groups .toolbar {
+    text-align: right; }
+    @media (max-width: 440px) {
+      .groups .toolbar {
+        text-align: left; } }
   .groups li {
     margin: 15px auto;
     list-style: none; }
@@ -65,6 +70,16 @@
     font-size: 13px !important; }
   .links-list h4 {
     margin-bottom: 20px; }
+  .links-list .toolbar {
+    text-align: right; }
+    @media (max-width: 992px) {
+      .links-list .toolbar {
+        text-align: left; } }
+    @media (max-width: 440px) {
+      .links-list .toolbar {
+        text-align: center; } }
+    .links-list .toolbar button {
+      margin-bottom: 10px; }
   .links-list .feed-header {
     margin-bottom: 2em; }
   .links-list .search-form {
@@ -72,6 +87,16 @@
     text-align: center; }
     .links-list .search-form input {
       width: 70%; }
+      @media (max-width: 768px) {
+        .links-list .search-form input {
+          margin-bottom: 10px;
+          width: 100%; } }
+    @media (max-width: 992px) {
+      .links-list .search-form {
+        margin: 1em auto; } }
+    @media (max-width: 768px) {
+      .links-list .search-form {
+        text-align: right; } }
   .links-list .list {
     margin: 2em auto; }
   .links-list .list-item {
@@ -82,10 +107,16 @@
       color: #494848;
       font-size: 25px;
       text-align: center; }
+      @media (max-width: 768px) {
+        .links-list .list-item .item .votes {
+          text-align: left; } }
     .links-list .list-item .item .votes-text {
       font-size: 12px;
       color: #95a5a6;
       text-align: center; }
+      @media (max-width: 768px) {
+        .links-list .list-item .item .votes-text {
+          text-align: left; } }
     .links-list .list-item .item .description {
       font-size: 15px;
       color: #95a5a6;
@@ -118,6 +149,8 @@
     line-height: 50px;
     margin-bottom: 1em;
     color: #000; }
+  .link-detail img {
+    width: 100%; }
   .link-detail .comments {
     margin-top: 2em;
     border-top: 1px dashed #EAE9D9; }
