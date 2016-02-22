@@ -154,6 +154,8 @@
     padding: 0 2em 2em;
     margin-left: 0;
     margin-right: 0; }
+    .link-detail .card img {
+      width: 100%; }
   .link-detail h1 {
     line-height: 50px;
     margin-bottom: 1em;
