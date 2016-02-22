@@ -100,7 +100,7 @@
             {% endif %}
           </div>
           <div class="item pull-right text-center actions col-md-1">
-            <p><span class="glyphicon glyphicon-heart add_repo {% if item.user_voted user %}active{%endif%}" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
+            <p><span class="glyphicon glyphicon-heart add_repo" url="{% url 'groups:link_like' pk=item.pk %}" aria-hidden="true"></span></p>
           </div>
         </div>
       {% endfor %}

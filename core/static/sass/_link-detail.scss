@@ -1,0 +1,27 @@
+//Link Detail
+
+.link-detail {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  color: #000;
+  line-height: 30px;
+
+  .card {
+  	padding: 0 2em 2em;
+  }
+
+  h1 {
+  	line-height: 50px;
+  	margin-bottom: 1em;
+  	color: #000;
+  }
+
+  .comments {
+    margin-top: 2em;
+    border-top: 1px dashed #EAE9D9;
+
+    a.main-disqussion-link {
+      color: $red-color !important;
+    }
+  }
+}

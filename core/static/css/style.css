@@ -113,7 +113,7 @@
   color: #000;
   line-height: 30px; }
   .link-detail .card {
-    padding: 2em; }
+    padding: 0 2em 2em; }
   .link-detail h1 {
     line-height: 50px;
     margin-bottom: 1em;
