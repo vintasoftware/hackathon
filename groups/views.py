@@ -5,6 +5,7 @@ from django.views import generic
 from django.shortcuts import redirect, get_object_or_404
 from django.conf import settings
 from django.contrib import messages
+from django.db import IntegrityError
 from django.db.models import Q, Count
 from django.http import JsonResponse
 
@@ -125,7 +126,7 @@ class AddUserGroupView(UserInGroupMixin, generic.View):
         if form.is_valid():
             try:
                 created = form.save()
-            except:
+            except IntegrityError:
                 message = 'The user is already in the group!'
                 extra_tags = 'alert-warning'
             else:

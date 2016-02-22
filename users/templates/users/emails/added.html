@@ -1,0 +1,3 @@
+{% autoescape off %}
+You have been added to an awesome group in Alexandria: {{ group.name }}. Check it out in http://{{ domain }}{% url 'groups:list_links' group_id=group.pk %}!
+{% endautoescape %}
