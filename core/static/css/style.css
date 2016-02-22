@@ -1,6 +1,6 @@
 .intro {
   height: 520px;
-  background-image: url("http://localhost:8000/static/images/back.jpg");
+  background-image: url("http://localhost:8000/static/images/back.png");
   background-size: cover;
   background-attachment: fixed;
   position: relative;
