@@ -29,9 +29,19 @@ body.modal-open {
   border: none;
   border-radius: 0;
 
+  .navbar-right {
+    float: right !important;
+  }
+
+  .navbar-header:after { 
+    @media #{$small-devices} {
+      clear: none; 
+    }
+  }
+
   .navbar-brand {
-	  font-family: 'Bitter', serif;
-	  font-weight: 700;
+    font-family: 'Bitter', serif;
+    font-weight: 700;
     font-size: 25px;
   }
 
@@ -43,6 +53,10 @@ body.modal-open {
     a {
       font-size: 18px;
       font-weight: 500;
+
+      @media #{$small-devices} {
+        padding: 7px 15px;
+      }
     }
   }
 }
