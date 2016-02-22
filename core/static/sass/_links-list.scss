@@ -16,6 +16,22 @@
   h4 {
     margin-bottom: 20px;
   }
+
+  .toolbar {
+    text-align: right;
+
+    @media #{$medium-devices} {
+      text-align: left;
+    }
+
+    @media #{$extra-small-devices} {
+      text-align: center;
+    }
+
+    button {
+      margin-bottom: 10px;
+    }
+  }
   
   .feed-header {
     margin-bottom: 2em;
@@ -27,6 +43,19 @@
 
     input {
       width: 70%;
+
+      @media #{$small-devices} {
+        margin-bottom: 10px;
+        width: 100%;
+      }
+    }
+
+    @media #{$medium-devices} {
+      margin: 1em auto;
+    }
+
+    @media #{$small-devices} {
+      text-align: right;
     }
   }
 
@@ -45,12 +74,20 @@
         color: $dark-gray-color;
         font-size: 25px;
         text-align: center;
+
+        @media #{$small-devices} {
+          text-align: left;
+        }
       }
 
       .votes-text {
         font-size: 12px;
         color: $gray-color;
         text-align: center;
+
+        @media #{$small-devices} {
+          text-align: left;
+        }
       }
 
       .description {
