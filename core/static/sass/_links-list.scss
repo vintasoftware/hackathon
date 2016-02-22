@@ -24,10 +24,6 @@
       text-align: left;
     }
 
-    @media #{$extra-small-devices} {
-      text-align: center;
-    }
-
     button {
       margin-bottom: 10px;
     }
@@ -116,6 +112,10 @@
 
         &.active {
           color: $red-color;
+        }
+
+        @media #{$extra-small-devices} {
+          padding-top: 5px;
         }
       }
 
